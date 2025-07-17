@@ -9,7 +9,7 @@ const router = createRouter({
       component: () => import('@/views/Layout/indexPage.vue'),
       children: [
         { path: '', component: () => import('@/views/Home/indexPage.vue') },
-        { path: 'category', component: () => import('@/views/Category/indexPage.vue') },
+        { path: 'category/:id', component: () => import('@/views/Category/indexPage.vue') },
       ],
     },
     {
