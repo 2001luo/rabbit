@@ -10,6 +10,7 @@ const router = createRouter({
       children: [
         { path: '', component: () => import('@/views/Home/indexPage.vue') },
         { path: 'category/:id', component: () => import('@/views/Category/indexPage.vue') },
+        { path: 'category/sub/:id', component: () => import('@/views/SubCategory/indexPage.vue') },
       ],
     },
     {
@@ -17,6 +18,11 @@ const router = createRouter({
       component: () => import('@/views/Login/indexPage.vue'),
     },
   ],
+  scrollBehavior() {
+    return {
+      top: 0,
+    }
+  },
 })
 
 export default router
