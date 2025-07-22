@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router'
 import { loginApi } from '@/apis/user'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/user'
+import { mergeCartAPI } from '@/apis/cart'
+import { useCartStore } from '@/stores/cartStore'
 
 const router = useRouter()
 const formRef = ref(null)
@@ -47,6 +49,13 @@ const doLogin = () => {
       ElMessage({ type: 'success', message: '登陆成功' })
       console.log(res.result)
       userStore.setUserInfo(res.result)
+      const cartStore = useCartStore()
+      mergeCartAPI(
+        cartStore.cartList.map((item) => {
+          return { skuId: item.skuid, selected: item.selected, count: item.count }
+        }),
+      )
+      cartStore.updateNewLiist()
       router.push('/')
     }
   })
