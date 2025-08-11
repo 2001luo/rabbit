@@ -7,7 +7,7 @@ export const useCartStore = defineStore(
   'cart',
   () => {
     const userStore = useUserStore()
-    const isLogin = computed(() => userStore.userInfo.token)
+    const isLogin = computed(() => userStore.token)
     //1.定义state - cartList
     const cartList = ref([])
     //2.定义action - addCart
@@ -69,6 +69,10 @@ export const useCartStore = defineStore(
       cartList.value = []
     }
 
+    const updateNewList = async () => {
+      const res = await findNewCartListAPI()
+      cartList.value = res.result
+    }
     return {
       cartList,
       allCount,
@@ -81,6 +85,7 @@ export const useCartStore = defineStore(
       singleCheck,
       allCheck,
       clearCart,
+      updateNewList,
     }
   },
   {

@@ -33,7 +33,7 @@ const addCart = () => {
     //规格已经选择 触发action
     cartStore.addCart({
       id: goods.value.id,
-      name: goods.value.name,
+      name: goods.value?.name,
       picture: goods.value.mainPictures[0],
       price: goods.value.price,
       count: count.value,
@@ -67,7 +67,7 @@ onMounted(() => {
           <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories[0].id}` }"
             >{{ goods.categories[0].name }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item>{{ goods.name }}</el-breadcrumb-item>
+          <el-breadcrumb-item>{{ goods?.name }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <!-- 商品信息 -->
@@ -95,14 +95,14 @@ onMounted(() => {
                 </li>
                 <li>
                   <p>品牌信息</p>
-                  <p>{{ goods.brand.name }}</p>
+                  <p>{{ goods.brand?.name }}</p>
                   <p><i class="iconfont icon-dynamic-filling"></i>品牌主页</p>
                 </li>
               </ul>
             </div>
             <div class="spec">
               <!-- 商品信息区 -->
-              <p class="g-name">{{ goods.name }}</p>
+              <p class="g-name">{{ goods?.name }}</p>
               <p class="g-desc">{{ goods.desc }}</p>
               <p class="g-price">
                 <span>{{ goods.oldPrice }}</span>

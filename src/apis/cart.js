@@ -1,5 +1,5 @@
 import http from '@/utils/http'
-import request from '@/utils/request'
+// import request from '@/utils/request'
 
 // 加入购物车
 export const insertCartAPI = ({ skuId, count }) => {
@@ -22,7 +22,7 @@ export const findNewCartListAPI = () => {
 
 // 删除购物车
 export const delCartAPI = (ids) => {
-  return request({
+  return http({
     url: '/member/cart',
     method: 'DELETE',
     data: {

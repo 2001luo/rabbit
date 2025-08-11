@@ -12,9 +12,11 @@ const http = axios.create({
 // axios请求拦截器
 http.interceptors.request.use(
   (config) => {
-    const userStore = useUserStore
+    const userStore = useUserStore()
     // 2. 按照后端的要求拼接token数据
     const token = userStore.token
+    console.log('当前请求URL:', config.url)
+    console.log('当前token:', token)
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -29,10 +31,10 @@ http.interceptors.response.use(
   (e) => {
     ElMessage({
       type: 'warning',
-      message: e.response.data.message,
+      message: e.response?.data.message,
     })
-    if (e.response.status === 401) {
-      const userStore = useUserStore
+    if (e.response?.status === 401) {
+      const userStore = useUserStore()
       userStore.clearUserInfo()
       router.push('/login')
     }

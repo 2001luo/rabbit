@@ -34,4 +34,30 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    // 输出目录
+    outDir: 'dist',
+    // 静态资源目录
+    assetsDir: 'assets',
+    // 生产环境是否生成 sourcemap
+    sourcemap: false,
+    // 打包时的 Rollup 配置
+    rollupOptions: {
+      output: {
+        // 分割代码块
+        manualChunks: {
+          vendor: ['vue', 'vue-router'],
+          element: ['element-plus'],
+        },
+      },
+    },
+    // 压缩选项
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // 移除 console
+        drop_debugger: true, // 移除 debugger
+      },
+    },
+  },
 })

@@ -1,8 +1,18 @@
 <script setup>
 import { useCategoryStore } from '@/stores/counter'
 import HeaderCart from './HeaderCart.vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const categoryStore = useCategoryStore()
+
+const search = ref('')
+const router = useRouter()
+const emit = defineEmits(['update-value'])
+const searchPage = () => {
+  emit('update-value', search.value)
+  router.push('search')
+}
 </script>
 
 <template>
@@ -23,7 +33,7 @@ const categoryStore = useCategoryStore()
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
-        <input type="text" placeholder="搜一搜" />
+        <input type="text" placeholder="搜一搜" v-model="search" @keydown.enter="searchPage" />
       </div>
       <HeaderCart></HeaderCart>
     </div>

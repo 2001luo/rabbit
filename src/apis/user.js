@@ -1,4 +1,5 @@
 import http from '@/utils/http'
+import request from '@/utils/request'
 
 export const loginApi = ({ account, password }) => {
   return http({
@@ -7,6 +8,15 @@ export const loginApi = ({ account, password }) => {
     data: {
       account,
       password,
+    },
+  })
+}
+
+export const getLikeListAPI = ({ limit = 4 }) => {
+  return request({
+    url: '/goods/relevant',
+    params: {
+      limit,
     },
   })
 }

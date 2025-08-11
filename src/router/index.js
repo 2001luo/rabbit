@@ -12,7 +12,25 @@ const router = createRouter({
         { path: 'category/:id', component: () => import('@/views/Category/indexPage.vue') },
         { path: 'category/sub/:id', component: () => import('@/views/SubCategory/indexPage.vue') },
         { path: '/detail/:id', component: () => import('@/views/Detail/indexPage.vue') },
-        { path: 'cartlist', component: () => import('@/views/CartList/indexPage.vue') },
+        { path: '/cartlist', component: () => import('@/views/CartList/indexPage.vue') },
+        { path: 'checkout', component: () => import('@/views/Checkout/indexPage.vue') },
+        { path: 'pay', component: () => import('@/views/Pay/indexPage.vue') },
+        { path: 'paycallback', component: () => import('@/views/Pay/PayBack.vue') },
+        { path: 'search', component: () => import('@/views/Search/IndexPage.vue') },
+        {
+          path: 'member',
+          component: () => import('@/views/Member/indexPage.vue'),
+          children: [
+            {
+              path: '',
+              component: () => import('@/views/Member/components/UserInfo.vue'),
+            },
+            {
+              path: 'order',
+              component: () => import('@/views/Member/components/UserOrder.vue'),
+            },
+          ],
+        },
       ],
     },
     {

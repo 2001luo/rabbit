@@ -55,7 +55,7 @@ const doLogin = () => {
           return { skuId: item.skuid, selected: item.selected, count: item.count }
         }),
       )
-      cartStore.updateNewLiist()
+      cartStore.updateNewList()
       router.push('/')
     }
   })
